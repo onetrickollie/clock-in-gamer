@@ -14,6 +14,8 @@
 		1457D64A2C50451400D6C20A /* Clock_In_GamersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1457D6492C50451400D6C20A /* Clock_In_GamersTests.swift */; };
 		1457D6542C50451400D6C20A /* Clock_In_GamersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1457D6532C50451400D6C20A /* Clock_In_GamersUITests.swift */; };
 		1457D6562C50451400D6C20A /* Clock_In_GamersUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1457D6552C50451400D6C20A /* Clock_In_GamersUITestsLaunchTests.swift */; };
+		1457D6632C50465B00D6C20A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1457D6622C50465B00D6C20A /* .gitignore */; };
+		1457D6652C5046B400D6C20A /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 1457D6642C5046B400D6C20A /* .gitattributes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		1457D64F2C50451400D6C20A /* Clock-In-GamersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Clock-In-GamersUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1457D6532C50451400D6C20A /* Clock_In_GamersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock_In_GamersUITests.swift; sourceTree = "<group>"; };
 		1457D6552C50451400D6C20A /* Clock_In_GamersUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock_In_GamersUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1457D6622C50465B00D6C20A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		1457D6642C5046B400D6C20A /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 		1457D62C2C50451200D6C20A = {
 			isa = PBXGroup;
 			children = (
+				1457D6642C5046B400D6C20A /* .gitattributes */,
+				1457D6622C50465B00D6C20A /* .gitignore */,
 				1457D6372C50451200D6C20A /* Clock-In-Gamers */,
 				1457D6482C50451400D6C20A /* Clock-In-GamersTests */,
 				1457D6522C50451400D6C20A /* Clock-In-GamersUITests */,
@@ -232,7 +238,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1457D6402C50451400D6C20A /* Preview Assets.xcassets in Resources */,
+				1457D6632C50465B00D6C20A /* .gitignore in Resources */,
 				1457D63D2C50451400D6C20A /* Assets.xcassets in Resources */,
+				1457D6652C5046B400D6C20A /* .gitattributes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
