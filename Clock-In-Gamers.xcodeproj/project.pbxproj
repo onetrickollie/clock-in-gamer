@@ -17,6 +17,7 @@
 		1457D6632C50465B00D6C20A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1457D6622C50465B00D6C20A /* .gitignore */; };
 		1457D6652C5046B400D6C20A /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 1457D6642C5046B400D6C20A /* .gitattributes */; };
 		4426C8E32C5196B5005983AF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8E22C5196B5005983AF /* Persistence.swift */; };
+		4426C8E72C51ADCB005983AF /* profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8E62C51ADCB005983AF /* profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		1457D6622C50465B00D6C20A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1457D6642C5046B400D6C20A /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		4426C8E22C5196B5005983AF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		4426C8E62C51ADCB005983AF /* profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		1457D6372C50451200D6C20A /* Clock-In-Gamers */ = {
 			isa = PBXGroup;
 			children = (
+				4426C8E62C51ADCB005983AF /* profile.swift */,
 				1457D6382C50451200D6C20A /* Clock_In_GamersApp.swift */,
 				1457D63A2C50451200D6C20A /* ContentView.swift */,
 				1457D63C2C50451400D6C20A /* Assets.xcassets */,
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4426C8E32C5196B5005983AF /* Persistence.swift in Sources */,
+				4426C8E72C51ADCB005983AF /* profile.swift in Sources */,
 				1457D63B2C50451200D6C20A /* ContentView.swift in Sources */,
 				1457D6392C50451200D6C20A /* Clock_In_GamersApp.swift in Sources */,
 			);
