@@ -18,6 +18,7 @@
 		1457D6652C5046B400D6C20A /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 1457D6642C5046B400D6C20A /* .gitattributes */; };
 		147EF4522C5234D500BCC0F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF4512C5234D500BCC0F8 /* User.swift */; };
 		147EF4542C52350700BCC0F8 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF4532C52350700BCC0F8 /* UserDetailView.swift */; };
+		147EF4572C5242D200BCC0F8 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 147EF4562C5242D200BCC0F8 /* SwiftUIX */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147EF4572C5242D200BCC0F8 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +157,9 @@
 			dependencies = (
 			);
 			name = "Clock-In-Gamers";
+			packageProductDependencies = (
+				147EF4562C5242D200BCC0F8 /* SwiftUIX */,
+			);
 			productName = "Clock-In-Gamers";
 			productReference = 1457D6352C50451200D6C20A /* Clock-In-Gamers.app */;
 			productType = "com.apple.product-type.application";
@@ -227,6 +232,9 @@
 				Base,
 			);
 			mainGroup = 1457D62C2C50451200D6C20A;
+			packageReferences = (
+				147EF4552C52427700BCC0F8 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+			);
 			productRefGroup = 1457D6362C50451200D6C20A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -604,6 +612,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		147EF4552C52427700BCC0F8 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		147EF4562C5242D200BCC0F8 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 147EF4552C52427700BCC0F8 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1457D62D2C50451200D6C20A /* Project object */;
 }

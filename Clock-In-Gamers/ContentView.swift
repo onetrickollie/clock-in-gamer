@@ -21,39 +21,47 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // Clock In and Clock Out Buttons
-                HStack {
-                    VStack {
-                        Button(action: clockIn) {
-                            Image(systemName: "gamecontroller.fill")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(isClockedIn ? .gray : .green)
-                            Text("clock in")
-                                .foregroundColor(.white)
-                        }
-                    }
-                    .disabled(isClockedIn)
+                // Top Greeting Message
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(isClockedIn ? "Good day gamer, time to clock in" : "Good day gamer, time to clock out")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding(.top, 20)
                     
-                    Spacer()
-                    
-                    VStack {
-                        Button(action: clockOut) {
-                            Image(systemName: "xmark.circle.fill")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(isClockedIn ? .red : .gray)
-                            Text("clock out")
-                                .foregroundColor(.white)
-                        }
+                    if isClockedIn {
+                        Text("Let's see your stats for today.")
+                            .font(.subheadline)
+                    } else {
+                        Text("Ready to start another gaming session?")
+                            .font(.subheadline)
                     }
-                    .disabled(!isClockedIn)
                 }
-                .padding()
-                .background(Color.gray)
-
+                .padding(.horizontal)
+                
+                // Top Widget
+                VStack {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Today's Stats")
+                                .font(.headline)
+                            Text("Points Earned: 0")
+                            Text("Lifetime Points: 1400")
+                            // Add more text here as needed
+                        }
+                        Spacer()
+                        Image(systemName: "gamecontroller.fill")
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                }
+                .padding(.horizontal)
+                
                 Spacer()
-
+                
                 // User List Header
                 HStack {
                     VStack {
@@ -91,6 +99,8 @@ struct ContentView: View {
                                     .font(.title2)
                             }
                             .padding(.horizontal)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(10)
                         }
                     }
                 }
@@ -118,7 +128,9 @@ struct ContentView: View {
                     Spacer()
                 }
                 .padding()
-                .background(Color.gray)
+                .background(Color.gray.opacity(0.5))
+                .cornerRadius(10)
+                .shadow(radius: 5)
             }
             .background(Color.black.edgesIgnoringSafeArea(.all))
         }
