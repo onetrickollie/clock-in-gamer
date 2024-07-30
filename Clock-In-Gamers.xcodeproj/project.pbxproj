@@ -17,7 +17,14 @@
 		1457D6632C50465B00D6C20A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1457D6622C50465B00D6C20A /* .gitignore */; };
 		1457D6652C5046B400D6C20A /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 1457D6642C5046B400D6C20A /* .gitattributes */; };
 		4426C8E32C5196B5005983AF /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8E22C5196B5005983AF /* Persistence.swift */; };
-		4426C8E72C51ADCB005983AF /* profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8E62C51ADCB005983AF /* profile.swift */; };
+		4426C8E92C53C9C4005983AF /* AppNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8E82C53C9C4005983AF /* AppNavigation.swift */; };
+		4426C8EB2C53CAF4005983AF /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8EA2C53CAF4005983AF /* Home.swift */; };
+		4426C8ED2C53CC6F005983AF /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8EC2C53CC6F005983AF /* Login.swift */; };
+		4426C8F32C548038005983AF /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8F22C548038005983AF /* Schedule.swift */; };
+		4426C8F92C5481EF005983AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8F82C5481EF005983AF /* Extensions.swift */; };
+		4426C8FB2C54823B005983AF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8FA2C54823B005983AF /* Modifiers.swift */; };
+		4426C8FD2C555BB2005983AF /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8FC2C555BB2005983AF /* Profile.swift */; };
+		4426C8FF2C575D9C005983AF /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8FE2C575D9C005983AF /* AppData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +58,14 @@
 		1457D6622C50465B00D6C20A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1457D6642C5046B400D6C20A /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		4426C8E22C5196B5005983AF /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		4426C8E62C51ADCB005983AF /* profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
+		4426C8E82C53C9C4005983AF /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
+		4426C8EA2C53CAF4005983AF /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		4426C8EC2C53CC6F005983AF /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		4426C8F22C548038005983AF /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		4426C8F82C5481EF005983AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4426C8FA2C54823B005983AF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		4426C8FC2C555BB2005983AF /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		4426C8FE2C575D9C005983AF /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,12 +118,19 @@
 		1457D6372C50451200D6C20A /* Clock-In-Gamers */ = {
 			isa = PBXGroup;
 			children = (
-				4426C8E62C51ADCB005983AF /* profile.swift */,
 				1457D6382C50451200D6C20A /* Clock_In_GamersApp.swift */,
 				1457D63A2C50451200D6C20A /* ContentView.swift */,
+				4426C8F22C548038005983AF /* Schedule.swift */,
 				1457D63C2C50451400D6C20A /* Assets.xcassets */,
 				1457D63E2C50451400D6C20A /* Preview Content */,
 				4426C8E22C5196B5005983AF /* Persistence.swift */,
+				4426C8E82C53C9C4005983AF /* AppNavigation.swift */,
+				4426C8FC2C555BB2005983AF /* Profile.swift */,
+				4426C8EA2C53CAF4005983AF /* Home.swift */,
+				4426C8EC2C53CC6F005983AF /* Login.swift */,
+				4426C8FA2C54823B005983AF /* Modifiers.swift */,
+				4426C8F82C5481EF005983AF /* Extensions.swift */,
+				4426C8FE2C575D9C005983AF /* AppData.swift */,
 			);
 			path = "Clock-In-Gamers";
 			sourceTree = "<group>";
@@ -271,9 +292,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4426C8ED2C53CC6F005983AF /* Login.swift in Sources */,
+				4426C8FD2C555BB2005983AF /* Profile.swift in Sources */,
 				4426C8E32C5196B5005983AF /* Persistence.swift in Sources */,
-				4426C8E72C51ADCB005983AF /* profile.swift in Sources */,
+				4426C8F32C548038005983AF /* Schedule.swift in Sources */,
+				4426C8FF2C575D9C005983AF /* AppData.swift in Sources */,
+				4426C8FB2C54823B005983AF /* Modifiers.swift in Sources */,
+				4426C8E92C53C9C4005983AF /* AppNavigation.swift in Sources */,
+				4426C8F92C5481EF005983AF /* Extensions.swift in Sources */,
 				1457D63B2C50451200D6C20A /* ContentView.swift in Sources */,
+				4426C8EB2C53CAF4005983AF /* Home.swift in Sources */,
 				1457D6392C50451200D6C20A /* Clock_In_GamersApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
