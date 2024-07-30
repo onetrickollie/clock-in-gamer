@@ -1,18 +1,8 @@
-//
-//  profile.swift
-//  Clock-In-Gamers
-//
-//  Created by Francisco Ramirez on 7/24/24.
-//
+import Foundation
 
-import SwiftUI
-
-struct profile: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    profile()
+struct Profile {
+    var username: String
+    var bio: String
+    var discordLink: String
+    var steamUsername: String
 }

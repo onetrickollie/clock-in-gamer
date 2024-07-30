@@ -16,6 +16,10 @@
 		1457D6562C50451400D6C20A /* Clock_In_GamersUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1457D6552C50451400D6C20A /* Clock_In_GamersUITestsLaunchTests.swift */; };
 		1457D6632C50465B00D6C20A /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1457D6622C50465B00D6C20A /* .gitignore */; };
 		1457D6652C5046B400D6C20A /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = 1457D6642C5046B400D6C20A /* .gitattributes */; };
+		4ABCD70F2C56F85E00CD821F /* profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD70E2C56F85E00CD821F /* profile.swift */; };
+		4ABCD7112C57007800CD821F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD7102C57007800CD821F /* ProfileViewModel.swift */; };
+		4ABCD7132C5700A700CD821F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD7122C5700A700CD821F /* ProfileView.swift */; };
+		4ABCD7172C571B5900CD821F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD7162C571B5900CD821F /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		1457D6552C50451400D6C20A /* Clock_In_GamersUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock_In_GamersUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1457D6622C50465B00D6C20A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1457D6642C5046B400D6C20A /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+		4ABCD70E2C56F85E00CD821F /* profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
+		4ABCD7102C57007800CD821F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		4ABCD7122C5700A700CD821F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		4ABCD7162C571B5900CD821F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +108,12 @@
 		1457D6372C50451200D6C20A /* Clock-In-Gamers */ = {
 			isa = PBXGroup;
 			children = (
+				4ABCD70E2C56F85E00CD821F /* profile.swift */,
 				1457D6382C50451200D6C20A /* Clock_In_GamersApp.swift */,
 				1457D63A2C50451200D6C20A /* ContentView.swift */,
+				4ABCD7122C5700A700CD821F /* ProfileView.swift */,
+				4ABCD7102C57007800CD821F /* ProfileViewModel.swift */,
+				4ABCD7162C571B5900CD821F /* CalendarView.swift */,
 				1457D63C2C50451400D6C20A /* Assets.xcassets */,
 				1457D63E2C50451400D6C20A /* Preview Content */,
 			);
@@ -265,7 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ABCD70F2C56F85E00CD821F /* profile.swift in Sources */,
 				1457D63B2C50451200D6C20A /* ContentView.swift in Sources */,
+				4ABCD7172C571B5900CD821F /* CalendarView.swift in Sources */,
+				4ABCD7132C5700A700CD821F /* ProfileView.swift in Sources */,
+				4ABCD7112C57007800CD821F /* ProfileViewModel.swift in Sources */,
 				1457D6392C50451200D6C20A /* Clock_In_GamersApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
