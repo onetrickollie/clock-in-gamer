@@ -25,6 +25,12 @@
 		4426C8FB2C54823B005983AF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8FA2C54823B005983AF /* Modifiers.swift */; };
 		4426C8FD2C555BB2005983AF /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8FC2C555BB2005983AF /* Profile.swift */; };
 		4426C8FF2C575D9C005983AF /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8FE2C575D9C005983AF /* AppData.swift */; };
+		146630CB2C52DF8A0040B39D /* TopWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146630CA2C52DF8A0040B39D /* TopWidgetView.swift */; };
+		146630CD2C52DFA50040B39D /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146630CC2C52DFA50040B39D /* UserRowView.swift */; };
+		147EF4522C5234D500BCC0F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF4512C5234D500BCC0F8 /* User.swift */; };
+		147EF4542C52350700BCC0F8 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF4532C52350700BCC0F8 /* UserDetailView.swift */; };
+		147EF4572C5242D200BCC0F8 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 147EF4562C5242D200BCC0F8 /* SwiftUIX */; };
+		14CF63EA2C59633900F09165 /* profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF63E92C59633900F09165 /* profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +72,11 @@
 		4426C8FA2C54823B005983AF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		4426C8FC2C555BB2005983AF /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		4426C8FE2C575D9C005983AF /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		146630CA2C52DF8A0040B39D /* TopWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopWidgetView.swift; sourceTree = "<group>"; };
+		146630CC2C52DFA50040B39D /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
+		147EF4512C5234D500BCC0F8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		147EF4532C52350700BCC0F8 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		14CF63E92C59633900F09165 /* profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147EF4572C5242D200BCC0F8 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +130,10 @@
 		1457D6372C50451200D6C20A /* Clock-In-Gamers */ = {
 			isa = PBXGroup;
 			children = (
+				14CF63E92C59633900F09165 /* profile.swift */,
+				147EF4512C5234D500BCC0F8 /* User.swift */,
 				1457D6382C50451200D6C20A /* Clock_In_GamersApp.swift */,
+				147EF4532C52350700BCC0F8 /* UserDetailView.swift */,
 				1457D63A2C50451200D6C20A /* ContentView.swift */,
 				4426C8F22C548038005983AF /* Schedule.swift */,
 				1457D63C2C50451400D6C20A /* Assets.xcassets */,
@@ -131,6 +146,10 @@
 				4426C8FA2C54823B005983AF /* Modifiers.swift */,
 				4426C8F82C5481EF005983AF /* Extensions.swift */,
 				4426C8FE2C575D9C005983AF /* AppData.swift */,
+				146630CA2C52DF8A0040B39D /* TopWidgetView.swift */,
+				1457D63C2C50451400D6C20A /* Assets.xcassets */,
+				1457D63E2C50451400D6C20A /* Preview Content */,
+				146630CC2C52DFA50040B39D /* UserRowView.swift */,
 			);
 			path = "Clock-In-Gamers";
 			sourceTree = "<group>";
@@ -176,6 +195,9 @@
 			dependencies = (
 			);
 			name = "Clock-In-Gamers";
+			packageProductDependencies = (
+				147EF4562C5242D200BCC0F8 /* SwiftUIX */,
+			);
 			productName = "Clock-In-Gamers";
 			productReference = 1457D6352C50451200D6C20A /* Clock-In-Gamers.app */;
 			productType = "com.apple.product-type.application";
@@ -248,6 +270,9 @@
 				Base,
 			);
 			mainGroup = 1457D62C2C50451200D6C20A;
+			packageReferences = (
+				147EF4552C52427700BCC0F8 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+			);
 			productRefGroup = 1457D6362C50451200D6C20A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -300,9 +325,14 @@
 				4426C8FB2C54823B005983AF /* Modifiers.swift in Sources */,
 				4426C8E92C53C9C4005983AF /* AppNavigation.swift in Sources */,
 				4426C8F92C5481EF005983AF /* Extensions.swift in Sources */,
+				147EF4542C52350700BCC0F8 /* UserDetailView.swift in Sources */,
 				1457D63B2C50451200D6C20A /* ContentView.swift in Sources */,
 				4426C8EB2C53CAF4005983AF /* Home.swift in Sources */,
 				1457D6392C50451200D6C20A /* Clock_In_GamersApp.swift in Sources */,
+				147EF4522C5234D500BCC0F8 /* User.swift in Sources */,
+				14CF63EA2C59633900F09165 /* profile.swift in Sources */,
+				146630CD2C52DFA50040B39D /* UserRowView.swift in Sources */,
+				146630CB2C52DF8A0040B39D /* TopWidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +662,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		147EF4552C52427700BCC0F8 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		147EF4562C5242D200BCC0F8 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 147EF4552C52427700BCC0F8 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1457D62D2C50451200D6C20A /* Project object */;
 }
