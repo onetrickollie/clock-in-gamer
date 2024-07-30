@@ -16,6 +16,8 @@ struct Login: View {
     @State var password = ""
     @State var shouldNavigate: Bool = false
     @State var errorLoggingIn: Bool = false
+    @EnvironmentObject var theUser : User
+    @EnvironmentObject var appData : AppData
     
     var body: some View {
         GeometryReader { geometry in
@@ -53,6 +55,9 @@ struct Login: View {
                         Button(action: {
                             if isValidUser() {
                                 errorLoggingIn = false;
+                                theUser.name = "CHnaged to victr"
+                                appData.activeUser.name = "CHnaged to victr"
+                                appData.saveData()
                                 shouldNavigate = true
                             } else {
                                 errorLoggingIn = true;

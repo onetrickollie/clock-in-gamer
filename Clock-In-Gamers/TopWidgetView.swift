@@ -20,7 +20,9 @@ struct TopWidgetView: View {
                         .font(.headline)
                     // an example on what this could look like
                     Text("Points Earned: 0")
+                        .foregroundColor(Color.black)
                     Text("Lifetime Points: 1400")
+                        .foregroundColor(Color.black)
                     Text("Status: \(isClockedIn ? "Clocked In" : "Clocked Out")")
                         .font(.subheadline)
                         .foregroundColor(isClockedIn ? .green : .red)

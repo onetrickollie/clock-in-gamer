@@ -28,7 +28,7 @@ struct alteredDate : Codable {
 }
 
 struct Schedules : Codable {
-    var sunday: String
+    var sunday: String // "12:00pm-04:30pm"
     var monday : String
     var tuesday : String
     var wednesday : String
@@ -39,16 +39,19 @@ struct Schedules : Codable {
     var alteredDates : [alteredDate]
 }
 
-protocol UserProto {
+protocol UserProto : Identifiable {
     var id : UUID { get set }
     var bio : String { get set }
+    var name : String { get set }
     var discordLink : String { get set }
     var steamUserName : String { get set }
+    var xboxUserName : String { get set }
     var status: StatusType { get set }
     var points: Int64 { get set }
     var type: GamerType { get set }
-    var clockedInAt : String { get set }
-    var clockedOutAt : String { get set }
+    var isClockedIn: Bool { get set }
+    var clockedInAt : Date? { get set }
+    var clockedOutAt : Date? { get set }
     var games : [String] { get set }
     var friends : [String] { get set }
     var schedule : Schedules? { get set }
@@ -56,46 +59,68 @@ protocol UserProto {
 
 class User : UserProto, ObservableObject, Codable {
     enum CodingKeys : CodingKey {
-        case id, bio, discordLink, steamUserName, status, points, type, clockedInAt, clockedOutAt, games, friends, schedule
+        case id, bio, name, discordLink, steamUserName, xboxUserName, status, points, type, isClockedIn, clockedInAt, clockedOutAt, games, friends, schedule
     }
     @Published var id: UUID
+    @Published var name: String
     @Published var bio: String
     @Published var discordLink: String
     @Published var steamUserName: String
+    @Published var xboxUserName: String
     @Published var status: StatusType
     @Published var points: Int64
     @Published var type: GamerType
-    @Published var clockedInAt: String
-    @Published var clockedOutAt: String
+    @Published var isClockedIn: Bool
+    @Published var clockedInAt: Date?
+    @Published var clockedOutAt: Date?
     @Published var games: [String]
     @Published var friends: [String]
     @Published var schedule: Schedules?
     
     
     init() {
-        id = UUID()
-        bio = "Happy Gamer"
-        discordLink = ""
-        steamUserName = ""
-        status = StatusType.CLOCKEDOUT
-        points = 0
-        type = GamerType.NOTAGAMER
-        clockedInAt = ""
-        clockedOutAt = ""
-        games = []
-        friends = []
+        self.id = UUID()
+        self.bio = "Happy Gamer"
+        self.name = ""
+        self.discordLink = ""
+        self.steamUserName = ""
+        self.xboxUserName = ""
+        self.status = StatusType.CLOCKEDOUT
+        self.points = 0
+        self.type = GamerType.NOTAGAMER
+        self.isClockedIn = false
+        self.games = []
+        self.friends = []
     }
+    init(bio : String, name: String, discordLink: String, steamUserName : String, xboxUserName: String, status: StatusType, points: Int64, type: GamerType, isClockedIn : Bool) {
+        self.id = UUID()
+        self.bio = bio
+        self.name = name
+        self.discordLink = discordLink
+        self.steamUserName = steamUserName
+        self.xboxUserName = xboxUserName
+        self.status = status
+        self.points = points
+        self.type = type
+        self.isClockedIn = false;
+        self.games = []
+        self.friends = []
+    }
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
         self.bio = try container.decode(String.self, forKey: .bio)
+        self.name = try container.decode(String.self, forKey: .name)
         self.discordLink = try container.decode(String.self, forKey: .discordLink)
         self.steamUserName = try container.decode(String.self, forKey: .steamUserName)
+        self.xboxUserName = try container.decode(String.self, forKey: .xboxUserName)
         self.status = try container.decode(StatusType.self, forKey: .status)
         self.points = try container.decode(Int64.self, forKey: .points)
         self.type = try container.decode(GamerType.self, forKey: .type)
-        self.clockedInAt = try container.decode(String.self, forKey: .clockedInAt)
-        self.clockedOutAt = try container.decode(String.self, forKey: .clockedOutAt)
+        self.isClockedIn = try container.decode(Bool.self, forKey: .isClockedIn)
+        self.clockedInAt = try container.decode(Date.self, forKey: .clockedInAt)
+        self.clockedOutAt = try container.decode(Date.self, forKey: .clockedOutAt)
         self.games = try container.decode([String].self, forKey: .games)
         self.friends = try container.decode([String].self, forKey: .friends)
         self.schedule = try container.decodeIfPresent(Schedules.self, forKey: .schedule)
@@ -105,16 +130,22 @@ class User : UserProto, ObservableObject, Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(bio, forKey: .bio)
+        try container.encode(name, forKey: .name)
         try container.encode(discordLink, forKey: .discordLink)
         try container.encode(steamUserName, forKey: .steamUserName)
+        try container.encode(xboxUserName, forKey: .xboxUserName)
         try container.encode(status, forKey: .status)
         try container.encode(points, forKey: .points)
         try container.encode(type, forKey: .type)
+        try container.encode(isClockedIn, forKey: .isClockedIn)
         try container.encode(clockedInAt, forKey: .clockedInAt)
         try container.encode(clockedOutAt, forKey: .clockedOutAt)
         try container.encode(games, forKey: .games)
         try container.encode(friends, forKey: .friends)
         try container.encodeIfPresent(schedule, forKey: .schedule)
+    }
+    func editName(name : String) -> Void {
+        self.name = name
     }
     func editBio(bio : String) -> Void {
         self.bio = bio
@@ -125,6 +156,9 @@ class User : UserProto, ObservableObject, Codable {
     func editSteamUserName(steamUserName : String) -> Void {
         self.steamUserName = steamUserName
     }
+    func editXboxUserName(xboxUserName : String) -> Void {
+        self.xboxUserName = xboxUserName
+    }
     func editStatus(status : StatusType) -> Void {
         self.status = status
     }
@@ -134,10 +168,13 @@ class User : UserProto, ObservableObject, Codable {
     func editType(type : GamerType) -> Void {
         self.type = type
     }
-    func editClockedInAt(time : String) -> Void {
+    func editIsClockedIn(state: Bool) -> Void {
+        self.isClockedIn = state
+    }
+    func editClockedInAt(time : Date) -> Void {
         self.clockedInAt = time
     }
-    func editClockedOutAt(time : String) -> Void {
+    func editClockedOutAt(time : Date) -> Void {
         self.clockedOutAt = time
     }
     func addGame(game: String) -> Void {
@@ -154,13 +191,17 @@ class User : UserProto, ObservableObject, Codable {
     }
 }
 
-struct Data : Codable {
+struct AppJsonData : Codable {
     var activeUser : User
     var allUsers : [User]
     var allGames : [String]
     var loggedInUsers : [User]
 }
 
+struct test : Codable {
+    var testt : String
+    var name : String
+}
 class AppData : ObservableObject {
     @Published var activeUser : User
     @Published var allUsers : [User]
@@ -170,10 +211,10 @@ class AppData : ObservableObject {
     var fileURL : URL
     
     init(_ initUser : User) {
-        activeUser = initUser
-        loggedInUsers = []
-        allUsers = []
-        allGames = []
+        self.activeUser = initUser
+        self.loggedInUsers = []
+        self.allUsers = []
+        self.allGames = []
         let documentsDirectory =
            FileManager.default.urls(for: .documentDirectory,
            in: .userDomainMask).first!
@@ -183,20 +224,25 @@ class AppData : ObservableObject {
 
         fileURL = archiveURL
         print(fileURL)
-//        loadData()
+        loadData()
     }
     func saveData() {
-        
+        let jsonEncoder = JSONEncoder()
+        if let jsonData = try? jsonEncoder.encode(activeUser) {
+            print(activeUser.name)
+            try? jsonData.write(to: fileURL)
+        } else {
+          print("Error encoding object to JSON")
+        }
     }
     
-//    func loadData() {
-//        let jsonDecoder = JSONDecoder()
-//        if let retrievedData = try? Data(contentsOf: fileURL),
-//            let decodedData = try? jsonDecoder.decode([String].self, from: retrievedData) {
-//            
-//            
-//        }
-//    }
+    func loadData() {
+        let jsonDecoder = JSONDecoder()
+        if let retrievedData = try? Data(contentsOf: fileURL),
+            let decodedData = try? jsonDecoder.decode(User.self, from: retrievedData) {
+                activeUser = decodedData
+        }
+    }
 }
 
 
