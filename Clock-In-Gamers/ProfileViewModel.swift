@@ -1,5 +1,12 @@
 import Foundation
 
+struct Profile {
+    var username: String
+    var bio: String
+    var discordLink: String
+    var steamUsername: String
+}
+
 class ProfileViewModel: ObservableObject {
     // The profile data that will be used to display and edit the profile
     @Published var profile = Profile(

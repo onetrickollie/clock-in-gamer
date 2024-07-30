@@ -22,7 +22,7 @@ struct UserDetailView: View {
                         .font(.title)
                     Text("Status: \(user.isClockedIn ? "Clocked In" : "Clocked Out")")
                         .font(.title)
-                    if let lastClockIn = user.lastClockIn {
+                    if let lastClockIn = user.clockedInAt {
                         if user.isClockedIn {
                             let duration = currentTime.timeIntervalSince(lastClockIn)
                             let minutes = Int(duration) / 60
