@@ -19,7 +19,7 @@ struct AppNavigation: View {
                         .animation(.bouncy)
                     Text("Home")
                 }
-            Profile()
+            ProfileView()
                 .tabItem {
                     Image(systemName: "person.circle")
                         .animation(.bouncy)
