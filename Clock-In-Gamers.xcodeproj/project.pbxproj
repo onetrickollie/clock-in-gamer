@@ -20,6 +20,12 @@
 		4ABCD7112C57007800CD821F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD7102C57007800CD821F /* ProfileViewModel.swift */; };
 		4ABCD7132C5700A700CD821F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD7122C5700A700CD821F /* ProfileView.swift */; };
 		4ABCD7172C571B5900CD821F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD7162C571B5900CD821F /* CalendarView.swift */; };
+		146630CB2C52DF8A0040B39D /* TopWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146630CA2C52DF8A0040B39D /* TopWidgetView.swift */; };
+		146630CD2C52DFA50040B39D /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146630CC2C52DFA50040B39D /* UserRowView.swift */; };
+		147EF4522C5234D500BCC0F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF4512C5234D500BCC0F8 /* User.swift */; };
+		147EF4542C52350700BCC0F8 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147EF4532C52350700BCC0F8 /* UserDetailView.swift */; };
+		147EF4572C5242D200BCC0F8 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 147EF4562C5242D200BCC0F8 /* SwiftUIX */; };
+		14CF63EA2C59633900F09165 /* profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF63E92C59633900F09165 /* profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,10 +58,17 @@
 		1457D6552C50451400D6C20A /* Clock_In_GamersUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock_In_GamersUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1457D6622C50465B00D6C20A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1457D6642C5046B400D6C20A /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+
 		4ABCD70E2C56F85E00CD821F /* profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
 		4ABCD7102C57007800CD821F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		4ABCD7122C5700A700CD821F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4ABCD7162C571B5900CD821F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		146630CA2C52DF8A0040B39D /* TopWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopWidgetView.swift; sourceTree = "<group>"; };
+		146630CC2C52DFA50040B39D /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
+		147EF4512C5234D500BCC0F8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		147EF4532C52350700BCC0F8 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
+		14CF63E92C59633900F09165 /* profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profile.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147EF4572C5242D200BCC0F8 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,13 +123,18 @@
 			isa = PBXGroup;
 			children = (
 				4ABCD70E2C56F85E00CD821F /* profile.swift */,
+				14CF63E92C59633900F09165 /* profile.swift */,
+				147EF4512C5234D500BCC0F8 /* User.swift */,
 				1457D6382C50451200D6C20A /* Clock_In_GamersApp.swift */,
+				147EF4532C52350700BCC0F8 /* UserDetailView.swift */,
 				1457D63A2C50451200D6C20A /* ContentView.swift */,
 				4ABCD7122C5700A700CD821F /* ProfileView.swift */,
 				4ABCD7102C57007800CD821F /* ProfileViewModel.swift */,
 				4ABCD7162C571B5900CD821F /* CalendarView.swift */,
+				146630CA2C52DF8A0040B39D /* TopWidgetView.swift */,
 				1457D63C2C50451400D6C20A /* Assets.xcassets */,
 				1457D63E2C50451400D6C20A /* Preview Content */,
+				146630CC2C52DFA50040B39D /* UserRowView.swift */,
 			);
 			path = "Clock-In-Gamers";
 			sourceTree = "<group>";
@@ -161,6 +180,9 @@
 			dependencies = (
 			);
 			name = "Clock-In-Gamers";
+			packageProductDependencies = (
+				147EF4562C5242D200BCC0F8 /* SwiftUIX */,
+			);
 			productName = "Clock-In-Gamers";
 			productReference = 1457D6352C50451200D6C20A /* Clock-In-Gamers.app */;
 			productType = "com.apple.product-type.application";
@@ -233,6 +255,9 @@
 				Base,
 			);
 			mainGroup = 1457D62C2C50451200D6C20A;
+			packageReferences = (
+				147EF4552C52427700BCC0F8 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+			);
 			productRefGroup = 1457D6362C50451200D6C20A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -278,11 +303,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ABCD70F2C56F85E00CD821F /* profile.swift in Sources */,
+				147EF4542C52350700BCC0F8 /* UserDetailView.swift in Sources */,
 				1457D63B2C50451200D6C20A /* ContentView.swift in Sources */,
 				4ABCD7172C571B5900CD821F /* CalendarView.swift in Sources */,
 				4ABCD7132C5700A700CD821F /* ProfileView.swift in Sources */,
 				4ABCD7112C57007800CD821F /* ProfileViewModel.swift in Sources */,
 				1457D6392C50451200D6C20A /* Clock_In_GamersApp.swift in Sources */,
+				147EF4522C5234D500BCC0F8 /* User.swift in Sources */,
+				14CF63EA2C59633900F09165 /* profile.swift in Sources */,
+				146630CD2C52DFA50040B39D /* UserRowView.swift in Sources */,
+				146630CB2C52DF8A0040B39D /* TopWidgetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +642,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		147EF4552C52427700BCC0F8 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		147EF4562C5242D200BCC0F8 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 147EF4552C52427700BCC0F8 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1457D62D2C50451200D6C20A /* Project object */;
 }
