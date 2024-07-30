@@ -39,28 +39,7 @@ struct ContentView: View {
                 .padding(.horizontal)
                 
                 // Top Widget
-                VStack {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("Today's Stats")
-                                .font(.headline)
-                            Text("Points Earned: 0")
-                            Text("Lifetime Points: 1400")
-                            // Add more text here as needed
-                        }
-                        Spacer()
-                        Image(systemName: "gamecontroller.fill")
-                            .resizable()
-                            .frame(width: 60, height: 60)
-                    }
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(radius: 5)
-                }
-                .padding(.horizontal)
-                
-                Spacer()
+                TopWidgetView(isClockedIn: $isClockedIn, clockIn: clockIn, clockOut: clockOut)
                 
                 // User List Header
                 HStack {
@@ -79,32 +58,18 @@ struct ContentView: View {
                     .background(Color.white)
                     .padding(.horizontal)
 
-                // User List
-                VStack(spacing: 20) {
-                    ForEach(users) { user in
-                        NavigationLink(destination: UserDetailView(user: user)) {
-                            HStack {
-                                Image(systemName: user.isClockedIn ? "person.circle.fill" : "person.crop.circle.badge.xmark")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                Spacer()
-                                Text(user.name)
-                                    .foregroundColor(.white)
-                                    .font(.title2)
-                                Spacer()
-                                Text(user.isClockedIn ? "Clocked In" : "Clocked Out")
-                                    .foregroundColor(user.isClockedIn ? .green : .red)
-                                    .font(.title2)
+                // Scrollable User List
+                ScrollView {
+                    VStack(spacing: 20) {
+                        ForEach(users) { user in
+                            NavigationLink(destination: UserDetailView(user: user)) {
+                                UserRowView(user: user)
+                                    .padding(.horizontal)
                             }
-                            .padding(.horizontal)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
                         }
                     }
+                    .padding()
                 }
-                .padding()
 
                 Spacer()
 

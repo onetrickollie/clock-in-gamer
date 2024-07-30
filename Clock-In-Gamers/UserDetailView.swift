@@ -1,17 +1,3 @@
-//
-//  UserDetailView.swift
-//  Clock-In-Gamers
-//
-//  Created by KaixiangLiu on 7/25/24.
-//
-
-//
-//  UserDetailView.swift
-//  Clock-In-Gamers
-//
-//  Created by KaixiangLiu on 7/25/24.
-//
-
 import SwiftUI
 
 struct UserDetailView: View {
@@ -22,14 +8,16 @@ struct UserDetailView: View {
 
     var body: some View {
         VStack {
+            HStack {
                 VStack {
                     Text("User Information")
                         .font(.largeTitle)
                         .padding()
                 }
-                .padding(.bottom,20)
+            }
+            Spacer()
             HStack {
-                VStack(spacing:20) {
+                VStack(spacing: 20) {
                     Text("Name: \(user.name)")
                         .font(.title)
                     Text("Status: \(user.isClockedIn ? "Clocked In" : "Clocked Out")")
@@ -53,7 +41,6 @@ struct UserDetailView: View {
                             }
                         }
                     }
-                    // Add more user information here
                 }
             }
             Spacer()
