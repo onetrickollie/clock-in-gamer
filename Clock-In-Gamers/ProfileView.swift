@@ -1,10 +1,8 @@
 import SwiftUI
 
 struct ProfileView: View {
-//    @StateObject private var viewModel = ProfileViewModel()
     @State private var isEditing = false
-    
-    @EnvironmentObject var appData : AppData
+    @EnvironmentObject var appData: AppData
     
     var body: some View {
         NavigationView {
@@ -33,7 +31,7 @@ struct ProfileView: View {
                             .cornerRadius(10)
                             .padding()
                             .frame(maxWidth: .infinity)
-                        
+
                         Text("Bio")
                             .font(.headline)
                             .padding(.top)
@@ -47,7 +45,7 @@ struct ProfileView: View {
                             .cornerRadius(10)
                             .padding()
                             .frame(maxWidth: .infinity)
-                        
+
                         Text("Discord link")
                             .font(.headline)
                             .padding(.top)
@@ -61,12 +59,26 @@ struct ProfileView: View {
                             .cornerRadius(10)
                             .padding()
                             .frame(maxWidth: .infinity)
-                        
+
                         Text("Steam username")
                             .font(.headline)
                             .padding(.top)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         TextField("Enter your Steam username", text: $appData.activeUser.steamUserName)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                            .background(Color.black)
+                            .foregroundColor(.white)
+                            .accentColor(.white)
+                            .cornerRadius(10)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+
+                        Text("Xbox username")
+                            .font(.headline)
+                            .padding(.top)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        TextField("Enter your Xbox username", text: $appData.activeUser.xboxUserName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
                             .background(Color.black)
@@ -82,28 +94,42 @@ struct ProfileView: View {
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
                             .padding()
-                        
-                        Text("Discord link")
-                            .font(.headline)
-                            .padding(.top)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        if let urlExists = try? URL(string: appData.activeUser.discordLink) {
-                            Link("Discord link", destination: urlExists)
+
+                        if !appData.activeUser.discordLink.isEmpty {
+                            Text("Discord link")
+                                .font(.headline)
                                 .padding(.top)
-                        } else {
-                            Text("No link")
-                                .padding(.top)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            if let urlExists = try? URL(string: appData.activeUser.discordLink) {
+                                Link("Discord link", destination: urlExists)
+                                    .padding(.top)
+                            } else {
+                                Text("No link")
+                                    .padding(.top)
+                            }
                         }
-                        
-                        Text("Steam username")
-                            .font(.headline)
-                            .padding(.top)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        Text(appData.activeUser.steamUserName)
-                            .padding(.top)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+
+                        if !appData.activeUser.steamUserName.isEmpty {
+                            Text("Steam username")
+                                .font(.headline)
+                                .padding(.top)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(appData.activeUser.steamUserName)
+                                .padding(.top)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+
+                        if !appData.activeUser.xboxUserName.isEmpty {
+                            Text("Xbox username")
+                                .font(.headline)
+                                .padding(.top)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(appData.activeUser.xboxUserName)
+                                .padding(.top)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                     }
-                    
+
                     if isEditing {
                         Button("Save") {
                             if appData.activeUser.bio.isEmpty {
@@ -154,7 +180,6 @@ struct ProfileView: View {
         .background(Color.black.edgesIgnoringSafeArea(.all))
     }
 }
-
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
