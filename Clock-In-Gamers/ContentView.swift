@@ -12,15 +12,18 @@ struct ContentView: View {
     @State private var users: [User] = []
 
     @State private var isClockedIn = false
-    @ObservedObject var theUser = User(bio: "Hello", name: "Victor", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: false)
-    @ObservedObject var appData = AppData(User(bio: "Hello", name: "Victor", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: false))
+//    @ObservedObject var theUser = User(bio: "Hello", name: "Victor", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: false)
+    @ObservedObject var appData = AppData()
     
     init() {
+        appData.loadData()
+//        appData.loadData()
+//        appData.loadData()
     }
 
     var body: some View {
         Login()
-            .environmentObject(theUser)
+//            .environmentObject(theUser)
             .environmentObject(appData)
     }
 }
