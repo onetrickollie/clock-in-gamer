@@ -33,6 +33,7 @@ struct ProfileView: View {
                             .cornerRadius(10)
                             .padding()
                             .frame(maxWidth: .infinity)
+                        
                         Text("Bio")
                             .font(.headline)
                             .padding(.top)
@@ -46,6 +47,7 @@ struct ProfileView: View {
                             .cornerRadius(10)
                             .padding()
                             .frame(maxWidth: .infinity)
+                        
                         Text("Discord link")
                             .font(.headline)
                             .padding(.top)
@@ -59,6 +61,7 @@ struct ProfileView: View {
                             .cornerRadius(10)
                             .padding()
                             .frame(maxWidth: .infinity)
+                        
                         Text("Steam username")
                             .font(.headline)
                             .padding(.top)
@@ -73,12 +76,13 @@ struct ProfileView: View {
                             .padding()
                             .frame(maxWidth: .infinity)
                     } else {
-                        Text(appData.activeUser.bio)
+                        Text(appData.activeUser.bio.isEmpty ? "Hello!" : appData.activeUser.bio)
                             .padding()
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
                             .padding()
+                        
                         Text("Discord link")
                             .font(.headline)
                             .padding(.top)
@@ -99,8 +103,12 @@ struct ProfileView: View {
                             .padding(.top)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    
                     if isEditing {
                         Button("Save") {
+                            if appData.activeUser.bio.isEmpty {
+                                appData.activeUser.bio = "Hello!"
+                            }
                             appData.saveData()
                             isEditing.toggle()
                         }
@@ -119,11 +127,6 @@ struct ProfileView: View {
                     }
 
                     Spacer()
-
-                    // Calendar view
-                    CalendarView()
-                        .padding()
-                        .frame(maxWidth: .infinity)
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
@@ -148,9 +151,10 @@ struct ProfileView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .background(Color.black.edgesIgnoringSafeArea(.all)) // Fix the white bar at the top
+        .background(Color.black.edgesIgnoringSafeArea(.all))
     }
 }
+
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
