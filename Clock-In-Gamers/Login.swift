@@ -14,61 +14,139 @@ func isValidUser() -> Bool {
 struct Login: View {
     @State var userName = ""
     @State var password = ""
+    @State var registerUserName = ""
+    @State var registerPassword = ""
+    @State var showingAlert: Bool = false
+    @State var alertMessage: String = ""
     @State var shouldNavigate: Bool = false
     @State var errorLoggingIn: Bool = false
 //    @EnvironmentObject var theUser : User
     @EnvironmentObject var appData : AppData
+    @EnvironmentObject var authManager: AuthManager
+    
+    func login() {
+        if userName.isEmpty || password.isEmpty {
+            alertMessage = "Please enter both username and password."
+            showingAlert = true
+            return
+        }
+        authManager.login(username: userName, password: password)
+        if !authManager.isAuthenticated {
+            alertMessage = "Invalid username or password."
+            showingAlert = true
+        } else {
+            var logInUser = appData.allUsers.first { user in
+                return user.name == userName
+            }
+            if let activeLoggedInUser = logInUser {
+                appData.activeUser = activeLoggedInUser
+            }
+        }
+    }
+    func register() {
+        if registerUserName.isEmpty || registerPassword.isEmpty {
+            alertMessage = "Please enter both username and password."
+            showingAlert = true
+            return
+        }
+
+        if authManager.register(username: registerUserName, password: registerPassword) {
+            appData.activeUser.name = registerUserName
+            shouldNavigate = true
+        } else {
+            alertMessage = "Username already exists."
+            showingAlert = true
+        }
+    }
     
     var body: some View {
         GeometryReader { geometry in
             NavigationStack {
                 VStack {
-                    Text("Login")
-                        .font(.largeTitle)
-                        .padding()
-                    
                     VStack {
-                        VStack(alignment: .leading) {
-                            Text("Username:")
-                            TextField("userName", text: $userName)
-                                .background(Color.white)
-                            .foregroundColor(.black)
-                            .font(.title2)
-                        }
+                        Text("Register")
+                            .font(.largeTitle)
+                            .padding()
                         
                         VStack(alignment: .leading) {
+                            Text("Username:")
+                            TextField("Username", text: $registerUserName)
+                                .background(Color.white)
+                                .foregroundColor(.black)
+                                .font(.title2)
+                        }
+                        VStack(alignment: .leading) {
                             Text("Password:")
-                            TextField("password", text: $password)
+                            SecureField("Password", text: $registerPassword)
                                 .background(Color.white)
                                 .foregroundColor(.black)
                                 .font(.title2)
                         }
 
-                    }
-                    .padding(20)
-                    
-                    VStack {
-                        if errorLoggingIn {
-                            Text("Wrong username or password")
-                            Text("Try again")
-                        }
                         Button(action: {
-                            if isValidUser() {
-                                errorLoggingIn = false;
-                                shouldNavigate = true
-                            } else {
-                                errorLoggingIn = true;
-                            }
-                            print("submitting")
+                            register()
                         }) {
                             HStack {
-                                Text("Submit")
+                                Text("Register")
                                 Image(systemName: "arrow.right")
                             }
                         }
                         .padding(10)
                         .background(Color.blue)
+                        .foregroundColor(.white)
                         .cornerRadius(3.0)
+
+                    }
+                    .padding()
+                    VStack {
+                        Text("Login")
+                            .font(.largeTitle)
+                            .padding()
+                        
+                        VStack {
+                            VStack(alignment: .leading) {
+                                Text("Username:")
+                                TextField("userName", text: $userName)
+                                    .background(Color.white)
+                                    .foregroundColor(.black)
+                                    .font(.title2)
+                            }
+                            
+                            VStack(alignment: .leading) {
+                                Text("Password:")
+                                TextField("password", text: $password)
+                                    .background(Color.white)
+                                    .foregroundColor(.black)
+                                    .font(.title2)
+                            }
+
+                        }
+                        .padding(20)
+                        
+                        VStack {
+                            if errorLoggingIn {
+                                Text("Wrong username or password")
+                                Text("Try again")
+                            }
+                            Button(action: {
+                                login()
+                                errorLoggingIn = false;
+                                shouldNavigate = true
+                                if isValidUser() {
+                                    
+                                } else {
+                                    errorLoggingIn = true;
+                                }
+                            }) {
+                                HStack {
+                                    Text("Submit")
+                                    Image(systemName: "arrow.right")
+                                }
+                            }
+                            .padding(10)
+                            .background(Color.blue)
+                            .cornerRadius(3.0)
+                        }
                     }
                 }
                 .navigationDestination(isPresented: $shouldNavigate) {
@@ -76,6 +154,10 @@ struct Login: View {
                 }
                 .modifier(MainBackground())
             }
+        }
+        .padding()
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Login Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
         .edgesIgnoringSafeArea(.all) // Extend the view to the edges of the screen
     }

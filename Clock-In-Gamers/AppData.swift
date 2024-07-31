@@ -221,6 +221,7 @@ class AppData : ObservableObject {
             "Super Smash Bros",
             "Call of Duty"
         ]
+        self.allUsers.append(self.activeUser)
     }
     
     func getDocumentsDirectory() -> URL {

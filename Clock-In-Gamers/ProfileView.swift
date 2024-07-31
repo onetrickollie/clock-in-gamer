@@ -5,6 +5,7 @@ struct ProfileView: View {
     @State private var isEditing = false
     
     @EnvironmentObject var appData : AppData
+    @EnvironmentObject var authManager : AuthManager
     
     var body: some View {
         NavigationView {
@@ -136,6 +137,7 @@ struct ProfileView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         // Add log out functionality here
+                        authManager.logout()
                     }) {
                         Text("Log Out")
                             .foregroundColor(.white)
@@ -144,6 +146,7 @@ struct ProfileView: View {
                             .background(Color.red)
                             .clipShape(Capsule())
                     }
+                    
                 }
             }
         }
