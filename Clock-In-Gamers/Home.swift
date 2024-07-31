@@ -10,49 +10,18 @@ import SwiftUI
 struct Home: View {
     // Methods for clock-in and clock-out actions
     @State var isClockedIn: Bool = false
-    @EnvironmentObject var appData : AppData
-  
+    @EnvironmentObject var appData: AppData
+    
     private func clockIn() {
         isClockedIn = true
-        updateUserClockInStatus(status: true)
+        // No need to update user statuses
     }
 
     private func clockOut() {
         isClockedIn = false
-        updateUserClockInStatus(status: false)
+        // No need to update user statuses
     }
 
-    private func updateUserClockInStatus(status: Bool) {
-        let now = Date()
-        for i in 0..<appData.allUsers.count {
-            appData.allUsers[i].isClockedIn = status
-            if status {
-                appData.allUsers[i].clockedInAt = now
-            }
-        }
-//        saveUsers()
-    }
-
-//    private func saveUsers() {
-//        if let encoded = try? JSONEncoder().encode(users) {
-//            UserDefaults.standard.set(encoded, forKey: "users")
-//        }
-//    }
-//
-//    private static func loadUsers() -> [User] {
-//        if let savedUsers = UserDefaults.standard.object(forKey: "users") as? Data {
-//            if let decodedUsers = try? JSONDecoder().decode([User].self, from: savedUsers) {
-//                return decodedUsers
-//            }
-//        }
-//        // Return default users if no saved data is found
-//        return [
-//            User(name: "Kai", isClockedIn: false),
-//            User(name: "Peter", isClockedIn: false),
-//            User(name: "Victor", isClockedIn: false),
-//            User(name: "Frank", isClockedIn: false)
-//        ]
-//    }
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
@@ -108,32 +77,19 @@ struct Home: View {
                     }
 
                     Spacer()
-
-                    // Bottom Navigation Bar
-//                    HStack {
-//                        Spacer()
-//                        Image(systemName: "house.fill")
-//                            .resizable()
-//                            .frame(width: 30, height: 30)
-//                            .foregroundColor(.white)
-//                        Spacer()
-//                        Image(systemName: "person.fill")
-//                            .resizable()
-//                            .frame(width: 30, height: 30)
-//                            .foregroundColor(.white)
-//                        Spacer()
-//                        Image(systemName: "calendar")
-//                            .resizable()
-//                            .frame(width: 30, height: 30)
-//                            .foregroundColor(.white)
-//                        Spacer()
-//                    }
-//                    .padding()
-//                    .background(Color.gray.opacity(0.5))
-//                    .cornerRadius(10)
-//                    .shadow(radius: 5)
                 }
                 .background(Color.black.edgesIgnoringSafeArea(.all))
+                .onAppear {
+                    // Ensuring the first user is always clocked in at the start
+                    if let firstUser = appData.allUsers.first {
+                        if firstUser.name == "Frank" {
+                            firstUser.isClockedIn = true
+                            if firstUser.clockedInAt == nil {
+                                firstUser.clockedInAt = Date()
+                            }
+                        }
+                    }
+                }
             }
             .modifier(MainBackground())
         }
@@ -143,6 +99,3 @@ struct Home: View {
 #Preview {
     Home()
 }
-
-
-
