@@ -205,7 +205,7 @@ class AppData : ObservableObject {
     @Published var loggedInUsers : [User]
     
     init() {
-        self.activeUser = User(bio: "Hello whats going on", name: "Some Dude", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDOUT, points: 100, type: GamerType.RELIABLE, isClockedIn: false)
+        self.activeUser = User(bio: "Hello whats going on", name: "User1", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: true)
         self.loggedInUsers = []
         self.allUsers =
         [
@@ -222,7 +222,6 @@ class AppData : ObservableObject {
             "Call of Duty"
         ]
     }
-    
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
@@ -235,7 +234,7 @@ class AppData : ObservableObject {
     
     func saveData() {
         let fileURL = getFileURL()
-        var appJson = AppJsonData(activeUser: self.activeUser, allUsers: self.allUsers, allGames: self.allGames, loggedInUsers: self.loggedInUsers)
+        let appJson = AppJsonData(activeUser: self.activeUser, allUsers: self.allUsers, allGames: self.allGames, loggedInUsers: self.loggedInUsers)
         
         if let jsonData = try? JSONEncoder().encode(appJson) {
 //            print(activeUser.name)
@@ -253,7 +252,7 @@ class AppData : ObservableObject {
             retrievedData = try Data(contentsOf: fileURL)
 //            print(retrievedData)
             do {
-                var allDataJson = try JSONDecoder().decode(AppJsonData.self, from: retrievedData)
+                let allDataJson = try JSONDecoder().decode(AppJsonData.self, from: retrievedData)
                 self.activeUser = allDataJson.activeUser
                 self.allGames = allDataJson.allGames
                 self.loggedInUsers = allDataJson.loggedInUsers

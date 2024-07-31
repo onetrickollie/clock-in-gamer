@@ -2,7 +2,7 @@
 //  Home.swift
 //  Clock-In-Gamers
 //
-//  Created by Victor Mercado on 7/26/24.
+//  Created by KaixiangLiu on 7/26/24.
 //
 
 import SwiftUI

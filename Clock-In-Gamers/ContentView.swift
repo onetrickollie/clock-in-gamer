@@ -14,17 +14,15 @@ struct ContentView: View {
     @State private var isClockedIn = false
 //    @ObservedObject var theUser = User(bio: "Hello", name: "Victor", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: false)
     @ObservedObject var appData = AppData()
+    @StateObject var authManager = AuthManager()
     
     init() {
-        appData.loadData()
-//        appData.loadData()
-//        appData.loadData()
     }
 
     var body: some View {
-        Login()
-//            .environmentObject(theUser)
+        Login(isUserAuthed: authManager.isAuthenticated)
             .environmentObject(appData)
+            .environmentObject(authManager)
     }
 }
 
