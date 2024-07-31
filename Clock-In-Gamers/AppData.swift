@@ -209,7 +209,7 @@ class AppData : ObservableObject {
         self.loggedInUsers = []
         self.allUsers =
         [
-            User(bio: "Hello whats going on", name: "Frank", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: false),
+            User(bio: "Hello whats going on", name: "Frank", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: true),
             User(bio: "Hello whats going on", name: "Kai", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDOUT, points: 100, type: GamerType.RELIABLE, isClockedIn: false),
             User(bio: "Hello whats going on", name: "Peter", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: false),
             User(bio: "Hello whats going on", name: "Luke", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDOUT, points: 100, type: GamerType.RELIABLE, isClockedIn: false),

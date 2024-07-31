@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct UserDetailView: View {
-    var user: User
+    @ObservedObject var user: User
     @State private var currentTime = Date()
     
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -46,8 +46,19 @@ struct UserDetailView: View {
             Spacer()
         }
         .navigationBarTitle(Text(user.name), displayMode: .inline)
+        .onAppear {
+            // Ensure Frank is always clocked in and the timer runs
+            if user.name == "Frank" {
+                user.isClockedIn = true
+                if user.clockedInAt == nil {
+                    user.clockedInAt = Date()
+                }
+            }
+        }
         .onReceive(timer) { input in
-            currentTime = input
+            if user.name == "Frank" {
+                currentTime = input
+            }
         }
     }
 }
