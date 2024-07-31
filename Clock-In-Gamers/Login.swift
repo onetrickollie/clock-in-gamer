@@ -24,6 +24,10 @@ struct Login: View {
     @EnvironmentObject var appData : AppData
     @EnvironmentObject var authManager: AuthManager
     
+    init(isUserAuthed : Bool) {
+        shouldNavigate = isUserAuthed
+    }
+    
     func login() {
         if userName.isEmpty || password.isEmpty {
             alertMessage = "Please enter both username and password."
@@ -40,6 +44,7 @@ struct Login: View {
             }
             if let activeLoggedInUser = logInUser {
                 appData.activeUser = activeLoggedInUser
+                shouldNavigate = true
             }
         }
     }
@@ -51,7 +56,9 @@ struct Login: View {
         }
 
         if authManager.register(username: registerUserName, password: registerPassword) {
-            appData.activeUser.name = registerUserName
+            let newUser = User(bio: "Hello whats going on", name: registerUserName, discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: true)
+            appData.activeUser = newUser
+            appData.allUsers.append(newUser)
             shouldNavigate = true
         } else {
             alertMessage = "Username already exists."
@@ -150,12 +157,12 @@ struct Login: View {
                     }
                 }
                 .navigationDestination(isPresented: $shouldNavigate) {
-                    AppNavigation().navigationBarBackButtonHidden(true)
+                    AppNavigation()
+                        .navigationBarBackButtonHidden(true)
                 }
                 .modifier(MainBackground())
             }
         }
-        .padding()
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("Login Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
@@ -164,5 +171,5 @@ struct Login: View {
 }
 
 #Preview {
-    Login()
+    Login(isUserAuthed: false)
 }

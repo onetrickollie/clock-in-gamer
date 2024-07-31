@@ -17,19 +17,12 @@ struct ContentView: View {
     @StateObject var authManager = AuthManager()
     
     init() {
-        appData.loadData()
     }
 
     var body: some View {
-        if authManager.isAuthenticated {
-            AppNavigation()
-                .environmentObject(appData)
-                .environmentObject(authManager)
-        } else {
-            Login()
-                .environmentObject(appData)
-                .environmentObject(authManager)
-        }
+        Login(isUserAuthed: authManager.isAuthenticated)
+            .environmentObject(appData)
+            .environmentObject(authManager)
     }
 }
 

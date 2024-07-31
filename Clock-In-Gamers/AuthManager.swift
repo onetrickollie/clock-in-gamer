@@ -15,20 +15,20 @@ class AuthManager: ObservableObject {
             UserDefaults.standard.set(isAuthenticated, forKey: "isAuthenticated")
         }
     }
-//    @Published var username: String {
-//        didSet {
-//            UserDefaults.standard.set(username, forKey: "username")
-//        }
-//    }
-//    @Published var password: String {
-//         didSet {
-//             UserDefaults.standard.set(password, forKey: "password")
-//         }
-//     }
+    @Published var username: String {
+        didSet {
+            UserDefaults.standard.set(username, forKey: "username")
+        }
+    }
+    @Published var password: String {
+         didSet {
+             UserDefaults.standard.set(password, forKey: "password")
+         }
+     }
     init() {
         self.isAuthenticated = UserDefaults.standard.bool(forKey: "isAuthenticated")
-//        self.username = UserDefaults.standard.string(forKey: "username") ?? ""
-//        self.password = UserDefaults.standard.string(forKey: "password") ?? ""
+        self.username = UserDefaults.standard.string(forKey: "username") ?? ""
+        self.password = UserDefaults.standard.string(forKey: "password") ?? ""
     }
     private func getUserPassword(username: String) -> String? {
         return UserDefaults.standard.string(forKey: "user_\(username)")
@@ -49,10 +49,10 @@ class AuthManager: ObservableObject {
     }
     func login(username: String, password: String) {
         if let storedPassword = getUserPassword(username: username), storedPassword == password {
-//            self.username = username
-//            self.password = password
+            self.username = username
+            self.password = password
             self.isAuthenticated = true
-        } else if username == "Some Dude" {
+        } else if username == "Dude" {
             self.isAuthenticated = true
         } else {
             self.isAuthenticated = false
@@ -61,7 +61,7 @@ class AuthManager: ObservableObject {
 
     func logout() {
         self.isAuthenticated = false
-//        self.username = ""
-//        self.password = ""
+        self.username = ""
+        self.password = ""
     }
 }
