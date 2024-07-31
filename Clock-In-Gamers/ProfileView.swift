@@ -4,6 +4,10 @@ struct ProfileView: View {
     @State private var isEditing = false
     @EnvironmentObject var appData: AppData
     
+    var discordPurple: Color {
+        Color(red: 114 / 255, green: 137 / 255, blue: 218 / 255)
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -31,7 +35,7 @@ struct ProfileView: View {
                             .cornerRadius(10)
                             .padding()
                             .frame(maxWidth: .infinity)
-
+                        
                         Text("Bio")
                             .font(.headline)
                             .padding(.top)
@@ -45,48 +49,51 @@ struct ProfileView: View {
                             .cornerRadius(10)
                             .padding()
                             .frame(maxWidth: .infinity)
-
-                        Text("Discord link")
-                            .font(.headline)
-                            .padding(.top)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        TextField("Enter your Discord link", text: $appData.activeUser.discordLink)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                            .background(Color.black)
-                            .foregroundColor(.white)
-                            .accentColor(.white)
-                            .cornerRadius(10)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-
-                        Text("Steam username")
-                            .font(.headline)
-                            .padding(.top)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        TextField("Enter your Steam username", text: $appData.activeUser.steamUserName)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                            .background(Color.black)
-                            .foregroundColor(.white)
-                            .accentColor(.white)
-                            .cornerRadius(10)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-
-                        Text("Xbox username")
-                            .font(.headline)
-                            .padding(.top)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        TextField("Enter your Xbox username", text: $appData.activeUser.xboxUserName)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                            .background(Color.black)
-                            .foregroundColor(.white)
-                            .accentColor(.white)
-                            .cornerRadius(10)
-                            .padding()
-                            .frame(maxWidth: .infinity)
+                        
+                        HStack {
+                            Image("discord")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            TextField("Enter your Discord link", text: $appData.activeUser.discordLink)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding()
+                                .background(Color.black)
+                                .foregroundColor(.white)
+                                .accentColor(.white)
+                                .cornerRadius(10)
+                                .padding(.leading, 10)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image("steam")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            TextField("Enter your Steam username", text: $appData.activeUser.steamUserName)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding()
+                                .background(Color.black)
+                                .foregroundColor(.white)
+                                .accentColor(.white)
+                                .cornerRadius(10)
+                                .padding(.leading, 10)
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Image("xbox")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                            TextField("Enter your Xbox username", text: $appData.activeUser.xboxUserName)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .padding()
+                                .background(Color.black)
+                                .foregroundColor(.white)
+                                .accentColor(.white)
+                                .cornerRadius(10)
+                                .padding(.leading, 10)
+                        }
+                        .padding()
                     } else {
                         Text(appData.activeUser.bio.isEmpty ? "Hello!" : appData.activeUser.bio)
                             .padding()
@@ -96,60 +103,83 @@ struct ProfileView: View {
                             .padding()
 
                         if !appData.activeUser.discordLink.isEmpty {
-                            Text("Discord link")
-                                .font(.headline)
-                                .padding(.top)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            if let urlExists = try? URL(string: appData.activeUser.discordLink) {
-                                Link("Discord link", destination: urlExists)
-                                    .padding(.top)
-                            } else {
-                                Text("No link")
-                                    .padding(.top)
+                            HStack {
+                                Image("discord")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                if let urlExists = try? URL(string: appData.activeUser.discordLink) {
+                                    Link(destination: urlExists) {
+                                        Text("Discord link")
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 10)
+                                            .padding(.vertical, 5)
+                                            .background(discordPurple)
+                                            .clipShape(Capsule())
+                                    }
+                                    .padding(.leading, 10)
+                                } else {
+                                    Text("No link")
+                                        .padding(.leading, 10)
+                                }
                             }
+                            .padding()
                         }
 
                         if !appData.activeUser.steamUserName.isEmpty {
-                            Text("Steam username")
-                                .font(.headline)
-                                .padding(.top)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Text(appData.activeUser.steamUserName)
-                                .padding(.top)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            HStack {
+                                Image("steam")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                Text(appData.activeUser.steamUserName)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.leading, 10)
+                            }
+                            .padding()
                         }
 
                         if !appData.activeUser.xboxUserName.isEmpty {
-                            Text("Xbox username")
-                                .font(.headline)
-                                .padding(.top)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Text(appData.activeUser.xboxUserName)
-                                .padding(.top)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            HStack {
+                                Image("xbox")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                Text(appData.activeUser.xboxUserName)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.leading, 10)
+                            }
+                            .padding()
                         }
                     }
-
-                    if isEditing {
-                        Button("Save") {
-                            if appData.activeUser.bio.isEmpty {
-                                appData.activeUser.bio = "Hello!"
+                    
+                    HStack {
+                        if isEditing {
+                            Button("Save") {
+                                if appData.activeUser.bio.isEmpty {
+                                    appData.activeUser.bio = "Hello!"
+                                }
+                                appData.saveData()
+                                isEditing.toggle()
                             }
-                            appData.saveData()
-                            isEditing.toggle()
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                        } else {
+                            Button("Edit") {
+                                isEditing.toggle()
+                            }
+                            .padding()
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                         }
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                    } else {
-                        Button("Edit") {
-                            isEditing.toggle()
+
+                        NavigationLink(destination: EmptyView()) {
+                            Text("Edit Schedule")
+                                .padding()
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
                         }
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
                     }
 
                     Spacer()
@@ -180,6 +210,7 @@ struct ProfileView: View {
         .background(Color.black.edgesIgnoringSafeArea(.all))
     }
 }
+
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
