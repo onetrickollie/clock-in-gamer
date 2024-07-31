@@ -102,7 +102,7 @@ class User : UserProto, ObservableObject, Codable {
         self.status = status
         self.points = points
         self.type = type
-        self.isClockedIn = false;
+        self.isClockedIn = isClockedIn
         self.games = []
         self.friends = []
     }
@@ -119,8 +119,8 @@ class User : UserProto, ObservableObject, Codable {
         self.points = try container.decode(Int64.self, forKey: .points)
         self.type = try container.decode(GamerType.self, forKey: .type)
         self.isClockedIn = try container.decode(Bool.self, forKey: .isClockedIn)
-        self.clockedInAt = try container.decode(Date.self, forKey: .clockedInAt)
-        self.clockedOutAt = try container.decode(Date.self, forKey: .clockedOutAt)
+        self.clockedInAt = try container.decodeIfPresent(Date.self, forKey: .clockedInAt)
+        self.clockedOutAt = try container.decodeIfPresent(Date.self, forKey: .clockedOutAt)
         self.games = try container.decode([String].self, forKey: .games)
         self.friends = try container.decode([String].self, forKey: .friends)
         self.schedule = try container.decodeIfPresent(Schedules.self, forKey: .schedule)
@@ -138,57 +138,57 @@ class User : UserProto, ObservableObject, Codable {
         try container.encode(points, forKey: .points)
         try container.encode(type, forKey: .type)
         try container.encode(isClockedIn, forKey: .isClockedIn)
-        try container.encode(clockedInAt, forKey: .clockedInAt)
-        try container.encode(clockedOutAt, forKey: .clockedOutAt)
+        try container.encodeIfPresent(clockedInAt, forKey: .clockedInAt)
+        try container.encodeIfPresent(clockedOutAt, forKey: .clockedOutAt)
         try container.encode(games, forKey: .games)
         try container.encode(friends, forKey: .friends)
         try container.encodeIfPresent(schedule, forKey: .schedule)
     }
-    func editName(name : String) -> Void {
-        self.name = name
-    }
-    func editBio(bio : String) -> Void {
-        self.bio = bio
-    }
-    func editDiscordLink(discordLink : String) -> Void {
-        self.discordLink = discordLink
-    }
-    func editSteamUserName(steamUserName : String) -> Void {
-        self.steamUserName = steamUserName
-    }
-    func editXboxUserName(xboxUserName : String) -> Void {
-        self.xboxUserName = xboxUserName
-    }
-    func editStatus(status : StatusType) -> Void {
-        self.status = status
-    }
-    func addPoints(add points: Int64) -> Void {
-        self.points = points
-    }
-    func editType(type : GamerType) -> Void {
-        self.type = type
-    }
-    func editIsClockedIn(state: Bool) -> Void {
-        self.isClockedIn = state
-    }
-    func editClockedInAt(time : Date) -> Void {
-        self.clockedInAt = time
-    }
-    func editClockedOutAt(time : Date) -> Void {
-        self.clockedOutAt = time
-    }
-    func addGame(game: String) -> Void {
-        self.games.append(game)
-    }
-    func deleteGame(index: Int) -> Void {
-        self.games.remove(at: index)
-    }
-    func addFriend(friend : String) -> Void {
-        self.friends.append(friend)
-    }
-    func deleteFriend(index : Int) -> Void {
-        self.friends.remove(at: index)
-    }
+//    func editName(name : String) -> Void {
+//        self.name = name
+//    }
+//    func editBio(bio : String) -> Void {
+//        self.bio = bio
+//    }
+//    func editDiscordLink(discordLink : String) -> Void {
+//        self.discordLink = discordLink
+//    }
+//    func editSteamUserName(steamUserName : String) -> Void {
+//        self.steamUserName = steamUserName
+//    }
+//    func editXboxUserName(xboxUserName : String) -> Void {
+//        self.xboxUserName = xboxUserName
+//    }
+//    func editStatus(status : StatusType) -> Void {
+//        self.status = status
+//    }
+//    func addPoints(add points: Int64) -> Void {
+//        self.points = points
+//    }
+//    func editType(type : GamerType) -> Void {
+//        self.type = type
+//    }
+//    func editIsClockedIn(state: Bool) -> Void {
+//        self.isClockedIn = state
+//    }
+//    func editClockedInAt(time : Date) -> Void {
+//        self.clockedInAt = time
+//    }
+//    func editClockedOutAt(time : Date) -> Void {
+//        self.clockedOutAt = time
+//    }
+//    func addGame(game: String) -> Void {
+//        self.games.append(game)
+//    }
+//    func deleteGame(index: Int) -> Void {
+//        self.games.remove(at: index)
+//    }
+//    func addFriend(friend : String) -> Void {
+//        self.friends.append(friend)
+//    }
+//    func deleteFriend(index : Int) -> Void {
+//        self.friends.remove(at: index)
+//    }
 }
 
 struct AppJsonData : Codable {
@@ -198,38 +198,47 @@ struct AppJsonData : Codable {
     var loggedInUsers : [User]
 }
 
-struct test : Codable {
-    var testt : String
-    var name : String
-}
 class AppData : ObservableObject {
     @Published var activeUser : User
     @Published var allUsers : [User]
     @Published var allGames : [String]
     @Published var loggedInUsers : [User]
     
-    var fileURL : URL
-    
-    init(_ initUser : User) {
-        self.activeUser = initUser
+    init() {
+        self.activeUser = User(bio: "Hello whats going on", name: "Some Dude", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDOUT, points: 100, type: GamerType.RELIABLE, isClockedIn: false)
         self.loggedInUsers = []
-        self.allUsers = []
-        self.allGames = []
-        let documentsDirectory =
-           FileManager.default.urls(for: .documentDirectory,
-           in: .userDomainMask).first!
-        let archiveURL =
-           documentsDirectory.appendingPathComponent("clockingamers")
-           .appendingPathExtension("json")
-
-        fileURL = archiveURL
-        print(fileURL)
-        loadData()
+        self.allUsers =
+        [
+            User(bio: "Hello whats going on", name: "Frank", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: false),
+            User(bio: "Hello whats going on", name: "Kai", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDOUT, points: 100, type: GamerType.RELIABLE, isClockedIn: false),
+            User(bio: "Hello whats going on", name: "Peter", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: false),
+            User(bio: "Hello whats going on", name: "Luke", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDOUT, points: 100, type: GamerType.RELIABLE, isClockedIn: false),
+            User(bio: "Hello whats going on", name: "Victor", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 100, type: GamerType.RELIABLE, isClockedIn: false)
+        ]
+        self.allGames = 
+        [
+            "Legend of Zelda",
+            "Super Smash Bros",
+            "Call of Duty"
+        ]
     }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+
+    func getFileURL() -> URL {
+        print(getDocumentsDirectory().appendingPathComponent("clockingamers").appendingPathExtension("json"))
+        return getDocumentsDirectory().appendingPathComponent("clockingamers").appendingPathExtension("json")
+    }
+    
     func saveData() {
-        let jsonEncoder = JSONEncoder()
-        if let jsonData = try? jsonEncoder.encode(activeUser) {
-            print(activeUser.name)
+        let fileURL = getFileURL()
+        var appJson = AppJsonData(activeUser: self.activeUser, allUsers: self.allUsers, allGames: self.allGames, loggedInUsers: self.loggedInUsers)
+        
+        if let jsonData = try? JSONEncoder().encode(appJson) {
+//            print(activeUser.name)
             try? jsonData.write(to: fileURL)
         } else {
           print("Error encoding object to JSON")
@@ -237,10 +246,35 @@ class AppData : ObservableObject {
     }
     
     func loadData() {
-        let jsonDecoder = JSONDecoder()
-        if let retrievedData = try? Data(contentsOf: fileURL),
-            let decodedData = try? jsonDecoder.decode(User.self, from: retrievedData) {
-                activeUser = decodedData
+        print("Loading")
+        let fileURL = getFileURL()
+        var retrievedData : Data
+        do {
+            retrievedData = try Data(contentsOf: fileURL)
+//            print(retrievedData)
+            do {
+                var allDataJson = try JSONDecoder().decode(AppJsonData.self, from: retrievedData)
+                self.activeUser = allDataJson.activeUser
+                self.allGames = allDataJson.allGames
+                self.loggedInUsers = allDataJson.loggedInUsers
+                self.allUsers = allDataJson.allUsers
+            } catch let DecodingError.dataCorrupted(context) {
+                print(context)
+            } catch let DecodingError.keyNotFound(key, context) {
+                print("Key '\(key)' not found:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch let DecodingError.valueNotFound(value, context) {
+                print("Value '\(value)' not found:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch let DecodingError.typeMismatch(type, context)  {
+                print("Type '\(type)' mismatch:", context.debugDescription)
+                print("codingPath:", context.codingPath)
+            } catch {
+                print("error: ", error)
+            }
+        } catch let error {
+            print(error.localizedDescription)
+            print("Error loading data")
         }
     }
 }

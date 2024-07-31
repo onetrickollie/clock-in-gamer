@@ -10,14 +10,8 @@ import SwiftUI
 struct Home: View {
     // Methods for clock-in and clock-out actions
     @State var isClockedIn: Bool = false
-    @State var users: [User] = 
-    [
-        User(bio: "", name: "Victor", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 210, type: GamerType.NOTAGAMER, isClockedIn: true),
-        User(bio: "", name: "Victor", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 210, type: GamerType.NOTAGAMER, isClockedIn: true),
-        User(bio: "", name: "Victor", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 210, type: GamerType.NOTAGAMER, isClockedIn: true),
-        User(bio: "", name: "Victor", discordLink: "", steamUserName: "", xboxUserName: "", status: StatusType.CLOCKEDIN, points: 210, type: GamerType.NOTAGAMER, isClockedIn: true)
-        
-    ]
+    @EnvironmentObject var appData : AppData
+  
     private func clockIn() {
         isClockedIn = true
         updateUserClockInStatus(status: true)
@@ -30,10 +24,10 @@ struct Home: View {
 
     private func updateUserClockInStatus(status: Bool) {
         let now = Date()
-        for i in 0..<users.count {
-            users[i].isClockedIn = status
+        for i in 0..<appData.allUsers.count {
+            appData.allUsers[i].isClockedIn = status
             if status {
-                users[i].clockedInAt = now
+                appData.allUsers[i].clockedInAt = now
             }
         }
 //        saveUsers()
@@ -103,7 +97,7 @@ struct Home: View {
                     // Scrollable User List
                     ScrollView {
                         VStack(spacing: 20) {
-                            ForEach(users) { user in
+                            ForEach(appData.allUsers) { user in
                                 NavigationLink(destination: UserDetailView(user: user)) {
                                     UserRowView(user: user)
                                         .padding(.horizontal)

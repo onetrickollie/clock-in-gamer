@@ -1,29 +1,69 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @StateObject private var viewModel = ProfileViewModel()
+//    @StateObject private var viewModel = ProfileViewModel()
     @State private var isEditing = false
-
+    
+    @EnvironmentObject var appData : AppData
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     HStack {
-                        Image(systemName: "person.circle")
+                        Image("kirby")
                             .resizable()
                             .frame(width: 50, height: 50)
-                        Text(viewModel.profile.username)
+                        Text(appData.activeUser.name)
                             .font(.largeTitle)
                     }
                     .padding()
 
-                    Text("Bio")
-                        .font(.headline)
-                        .padding(.top)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
                     if isEditing {
-                        TextField("Enter your bio", text: $viewModel.profile.bio)
+                        Text("User Name")
+                            .font(.headline)
+                            .padding(.top)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        TextField("Enter your new name", text: $appData.activeUser.name)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                            .background(Color.black)
+                            .foregroundColor(.white)
+                            .accentColor(.white)
+                            .cornerRadius(10)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                        Text("Bio")
+                            .font(.headline)
+                            .padding(.top)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        TextField("Enter your bio", text: $appData.activeUser.bio)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                            .background(Color.black)
+                            .foregroundColor(.white)
+                            .accentColor(.white)
+                            .cornerRadius(10)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                        Text("Discord link")
+                            .font(.headline)
+                            .padding(.top)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        TextField("Enter your Discord link", text: $appData.activeUser.discordLink)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding()
+                            .background(Color.black)
+                            .foregroundColor(.white)
+                            .accentColor(.white)
+                            .cornerRadius(10)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                        Text("Steam username")
+                            .font(.headline)
+                            .padding(.top)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        TextField("Enter your Steam username", text: $appData.activeUser.steamUserName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding()
                             .background(Color.black)
@@ -33,62 +73,50 @@ struct ProfileView: View {
                             .padding()
                             .frame(maxWidth: .infinity)
                     } else {
-                        Text(viewModel.profile.bio)
+                        Text(appData.activeUser.bio)
                             .padding()
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
                             .padding()
-                    }
-
-                    Text("Discord link")
-                        .font(.headline)
-                        .padding(.top)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                    if isEditing {
-                        TextField("Enter your Discord link", text: $viewModel.profile.discordLink)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                            .background(Color.black)
-                            .foregroundColor(.white)
-                            .accentColor(.white)
-                            .cornerRadius(10)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                    } else {
-                        Link("Discord link", destination: URL(string: viewModel.profile.discordLink)!)
+                        Text("Discord link")
+                            .font(.headline)
                             .padding(.top)
-                    }
-
-                    Text("Steam username")
-                        .font(.headline)
-                        .padding(.top)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                    if isEditing {
-                        TextField("Enter your Steam username", text: $viewModel.profile.steamUsername)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .padding()
-                            .background(Color.black)
-                            .foregroundColor(.white)
-                            .accentColor(.white)
-                            .cornerRadius(10)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                    } else {
-                        Text(viewModel.profile.steamUsername)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        if let urlExists = try? URL(string: appData.activeUser.discordLink) {
+                            Link("Discord link", destination: urlExists)
+                                .padding(.top)
+                        } else {
+                            Text("No link")
+                                .padding(.top)
+                        }
+                        
+                        Text("Steam username")
+                            .font(.headline)
+                            .padding(.top)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(appData.activeUser.steamUserName)
                             .padding(.top)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
-
-                    Button(isEditing ? "Save" : "Edit") {
-                        isEditing.toggle()
+                    if isEditing {
+                        Button("Save") {
+                            appData.saveData()
+                            isEditing.toggle()
+                        }
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                    } else {
+                        Button("Edit") {
+                            isEditing.toggle()
+                        }
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                     }
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
 
                     Spacer()
 

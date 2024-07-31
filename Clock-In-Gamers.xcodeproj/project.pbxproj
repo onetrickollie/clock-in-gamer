@@ -26,7 +26,6 @@
 		4426C8F92C5481EF005983AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8F82C5481EF005983AF /* Extensions.swift */; };
 		4426C8FB2C54823B005983AF /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8FA2C54823B005983AF /* Modifiers.swift */; };
 		4426C8FF2C575D9C005983AF /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4426C8FE2C575D9C005983AF /* AppData.swift */; };
-		4ABCD7112C57007800CD821F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD7102C57007800CD821F /* ProfileViewModel.swift */; };
 		4ABCD7132C5700A700CD821F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD7122C5700A700CD821F /* ProfileView.swift */; };
 		4ABCD7172C571B5900CD821F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABCD7162C571B5900CD821F /* CalendarView.swift */; };
 /* End PBXBuildFile section */
@@ -71,7 +70,6 @@
 		4426C8F82C5481EF005983AF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4426C8FA2C54823B005983AF /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		4426C8FE2C575D9C005983AF /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
-		4ABCD7102C57007800CD821F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		4ABCD7122C5700A700CD821F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		4ABCD7162C571B5900CD821F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,7 +135,6 @@
 				4426C8F82C5481EF005983AF /* Extensions.swift */,
 				4426C8FE2C575D9C005983AF /* AppData.swift */,
 				4ABCD7122C5700A700CD821F /* ProfileView.swift */,
-				4ABCD7102C57007800CD821F /* ProfileViewModel.swift */,
 				4ABCD7162C571B5900CD821F /* CalendarView.swift */,
 				146630CA2C52DF8A0040B39D /* TopWidgetView.swift */,
 				1457D63C2C50451400D6C20A /* Assets.xcassets */,
@@ -322,7 +319,6 @@
 				1457D63B2C50451200D6C20A /* ContentView.swift in Sources */,
 				4ABCD7172C571B5900CD821F /* CalendarView.swift in Sources */,
 				4ABCD7132C5700A700CD821F /* ProfileView.swift in Sources */,
-				4ABCD7112C57007800CD821F /* ProfileViewModel.swift in Sources */,
 				1457D6392C50451200D6C20A /* Clock_In_GamersApp.swift in Sources */,
 				146630CD2C52DFA50040B39D /* UserRowView.swift in Sources */,
 				146630CB2C52DF8A0040B39D /* TopWidgetView.swift in Sources */,
