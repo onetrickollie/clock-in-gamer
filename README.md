@@ -52,14 +52,6 @@ Create an application for users to collaborate on schedules to find an available
    a. allows the user to view their own make calendar <br />
    b.allows the user to edit their own calendar/schedule so that other users would be able to view it and collaborate scheduling times <br />
 
-# Prototype
-<img width="916" alt="image" src="https://github.com/user-attachments/assets/e1aa8dd2-6788-431d-9ab9-0f640b8093dd">
-<img width="920" alt="image" src="https://github.com/user-attachments/assets/cd28f11a-ac24-4639-8b8e-903ef9c736fb">
-<img width="917" alt="image" src="https://github.com/user-attachments/assets/27b95339-eb6c-4c08-814a-880c6456ff92">
-<img width="926" alt="image" src="https://github.com/user-attachments/assets/7665284b-e309-4a0a-89af-14c524d0bdf7">
-<img width="767" alt="image" src="https://github.com/user-attachments/assets/575c1280-43c7-40af-ab03-f742bfd4e4fd">
-<img width="342" alt="image" src="https://github.com/user-attachments/assets/33febd34-6c7c-4199-ab07-69bf0247ec94">
-
 
 
 
