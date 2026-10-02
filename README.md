@@ -2,7 +2,7 @@
 
 
 # Introduction
-	Members: Victor Mercado, Francisco Ramirez, Peter Nguyen, Kai Liu
+	Members: Kaixiang Liu, Victor Mercado, Francisco Ramirez, Peter Nguyen
 	We are a swift development team that has an interest in making an easier way for gamers to create gaming sessions
  Needs statement: A way for gamers to always find a gaming partner
 
